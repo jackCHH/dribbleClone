@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 
-	before_action :find_posts, only: [:show, :update, :edit, :destroy]
+	before_action :find_posts, only: [:show, :update, :edit, :destroy, :upvote, :downvote]
 	before_action :authenticate_user!, except: [:index, :show]
 
 	def index
@@ -39,6 +39,17 @@ class PostsController < ApplicationController
 	def destroy
 		@post.destroy
 		redirect_to root_path
+	end
+
+	# the following upvote and downvote are utilized in the routes.rb file
+	def upvote
+		@post.upvote_by current_user
+		redirect_to :back
+	end
+
+	def downvote
+		@post.downvote_by current_user
+		redirect_to :back
 	end
 
 	private
