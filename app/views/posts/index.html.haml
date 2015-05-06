@@ -1,1 +1,5 @@
-%h1 This is a place holder
+- @posts.each do |post|
+	%h2= link_to post.title, post
+
+
+= link_to "Add Inspiration", new_post_path
