@@ -1,6 +1,9 @@
 - @posts.each do |post|
-	= link_to (image_tag post.image.url(:small)), post
 	%h2= link_to post.title, post
+	%p
+		= post.comments.count
+		Comments
+	= link_to (image_tag post.image.url(:small)), post
 
 
 = link_to "Add Inspiration", new_post_path
